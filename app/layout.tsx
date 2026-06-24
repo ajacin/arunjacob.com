@@ -1,32 +1,53 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
 import { Analytics } from '@vercel/analytics/react';
-
-const inter = Inter({ subsets: ['latin'] });
+import Nav from '../components/nav';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://next-mdx-blog.vercel.app'),
+  metadataBase: new URL('https://arunjacob.com'),
   alternates: {
-    canonical: '/'
+    canonical: '/',
+  },
+  icons: {
+    icon: '/favicon.svg',
   },
   title: {
-    default: 'John Smith',
-    template: '%s | John Smith'
+    default: 'Arun Jacob',
+    template: '%s | Arun Jacob',
   },
-  description: 'My portfolio, blog, and personal website.'
+  description:
+    'Senior frontend engineer. Building GlassNudge and FedNews. Based in Woodstock, Ontario.',
+  openGraph: {
+    title: 'Arun Jacob',
+    description:
+      'Senior frontend engineer. Building GlassNudge and FedNews. Based in Woodstock, Ontario.',
+    url: 'https://arunjacob.com',
+    siteName: 'Arun Jacob',
+    locale: 'en_CA',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  twitter: {
+    title: 'Arun Jacob',
+    card: 'summary_large_image',
+  },
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.className}`}>
-      <body className="antialiased tracking-tight">
-        <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 dark:bg-zinc-950 bg-white text-gray-900 dark:text-zinc-200">
-          <main className="max-w-[60ch] mx-auto w-full space-y-6">
+    <html lang="en" className={`${GeistSans.className}`}>
+      <body className="antialiased">
+        <div className="min-h-screen flex flex-col justify-between pt-12 pb-16 px-6 bg-[#FAFAF9] dark:bg-[#111110] text-[#1A1A1A] dark:text-[#EBEBEA]">
+          <main className="max-w-[560px] mx-auto w-full space-y-9">
+            <Nav />
             {children}
           </main>
           <Footer />
@@ -39,27 +60,49 @@ export default function RootLayout({
 
 function Footer() {
   const links = [
-    { name: '@johnsmith', url: 'https://x.com/johnsmith' },
-    { name: 'youtube', url: 'https://www.youtube.com/@johnsmith' },
-    { name: 'linkedin', url: 'https://www.linkedin.com/in/johnsmith' },
-    { name: 'github', url: 'https://github.com/johnsmith' }
+    { name: 'email', url: 'mailto:hello@arunjacob.com' },
+    { name: 'github', url: 'https://github.com/ajacin' },
+    { name: 'x', url: 'https://x.com/ajacin' },
+    { name: 'linkedin', url: 'https://linkedin.com/in/arunjacob' },
   ];
 
   return (
-    <footer className="mt-12 text-center">
-      <div className="flex justify-center space-x-4 tracking-tight">
-        {links.map((link) => (
-          <a
-            key={link.name}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 dark:text-gray-500 hover:text-blue-500 transition-colors duration-200"
-          >
-            {link.name}
-          </a>
+    <footer className="max-w-[560px] mx-auto w-full mt-12 text-center">
+      <div className="flex justify-center space-x-3 text-sm">
+        {links.map((link, i) => (
+          <span key={link.name} className="flex items-center space-x-3">
+            {i > 0 && <span className="text-[#6B7280] dark:text-[#9CA3AF]">·</span>}
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#2563EB] dark:hover:text-[#60A5FA] transition-colors duration-200"
+            >
+              {link.name}
+            </a>
+          </span>
         ))}
       </div>
+      <p className="mt-4 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+        Site design inspired by{' '}
+        <a
+          href="https://leerob.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-[#2563EB] dark:hover:text-[#60A5FA] transition-colors"
+        >
+          leerob.com
+        </a>{' '}
+        · Built on{' '}
+        <a
+          href="https://github.com/leerob/next-mdx-blog"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-[#2563EB] dark:hover:text-[#60A5FA] transition-colors"
+        >
+          next-mdx-blog
+        </a>
+      </p>
     </footer>
   );
 }

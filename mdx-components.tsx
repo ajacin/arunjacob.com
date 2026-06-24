@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { highlight } from 'sugar-high';
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>;
+type Heading2Props = ComponentPropsWithoutRef<'h2'>;
 type ParagraphProps = ComponentPropsWithoutRef<'p'>;
 type ListProps = ComponentPropsWithoutRef<'ul'>;
 type ListItemProps = ComponentPropsWithoutRef<'li'>;
@@ -11,33 +12,39 @@ type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>;
 
 const components = {
   h1: (props: HeadingProps) => (
-    <h1 className="font-medium pt-12 mb-0" {...props} />
+    <h1
+      className="text-[22px] font-medium text-[#1A1A1A] dark:text-[#EBEBEA] mb-6"
+      {...props}
+    />
   ),
-  h2: (props: HeadingProps) => (
+  h2: (props: Heading2Props) => (
     <h2
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3"
+      className="text-[#1A1A1A] dark:text-[#EBEBEA] font-medium mt-8 mb-3"
       {...props}
     />
   ),
   h3: (props: HeadingProps) => (
     <h3
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3"
+      className="text-[#1A1A1A] dark:text-[#EBEBEA] font-medium mt-8 mb-3"
       {...props}
     />
   ),
   h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
   p: (props: ParagraphProps) => (
-    <p className="text-gray-800 dark:text-zinc-300 leading-snug" {...props} />
+    <p
+      className="text-[#1A1A1A] dark:text-[#EBEBEA] leading-[1.75] mb-4"
+      {...props}
+    />
   ),
   ol: (props: ListProps) => (
     <ol
-      className="text-gray-800 dark:text-zinc-300 list-decimal pl-5 space-y-2"
+      className="text-[#1A1A1A] dark:text-[#EBEBEA] list-decimal pl-5 space-y-2 leading-[1.75]"
       {...props}
     />
   ),
   ul: (props: ListProps) => (
     <ul
-      className="text-gray-800 dark:text-zinc-300 list-disc pl-5 space-y-1"
+      className="text-[#1A1A1A] dark:text-[#EBEBEA] list-disc pl-5 space-y-1 leading-[1.75]"
       {...props}
     />
   ),
@@ -50,7 +57,7 @@ const components = {
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
     const className =
-      'text-blue-500 hover:text-blue-700 dark:text-gray-400 hover:dark:text-gray-300 dark:underline dark:underline-offset-2 dark:decoration-gray-800';
+      'text-[#2563EB] hover:text-[#1A1A1A] dark:text-[#60A5FA] dark:hover:text-[#EBEBEA] underline underline-offset-2 decoration-[#2563EB]/30 dark:decoration-[#60A5FA]/30 transition-colors';
     if (href?.startsWith('/')) {
       return (
         <Link href={href} className={className} {...props}>
@@ -103,7 +110,7 @@ const components = {
   ),
   blockquote: (props: BlockquoteProps) => (
     <blockquote
-      className="ml-[0.075em] border-l-3 border-gray-300 pl-4 text-gray-700 dark:border-zinc-600 dark:text-zinc-300"
+      className="ml-[0.075em] border-l-3 border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] pl-4 text-[#6B7280] dark:text-[#9CA3AF]"
       {...props}
     />
   ),

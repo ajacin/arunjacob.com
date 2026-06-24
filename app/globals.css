@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-family-sans: 'Inter', sans-serif;
+  --font-family-sans: 'Geist Sans', sans-serif;
 }
 
 :root {
@@ -18,10 +18,12 @@
 html {
   min-width: 360px;
   scrollbar-gutter: stable;
+  font-size: 15px;
 }
 
 body {
   text-rendering: optimizeLegibility;
+  line-height: 1.75;
 }
 
 h1,
@@ -76,10 +78,6 @@ code:not(pre code) span {
 
 @media (prefers-color-scheme: dark) {
   code {
-    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-    font-size: 14px;
-    padding: 0.2em 0.4em;
-    border-radius: 0.3em;
     background-color: var(--color-zinc-800);
   }
 
@@ -96,7 +94,6 @@ hr {
   color: var(--color-gray-200);
 }
 
-/* Remove Safari input shadow on mobile */
 input[type='text'],
 input[type='email'] {
   -webkit-appearance: none;

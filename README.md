@@ -1,35 +1,18 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fleerob%2Fnext-mdx-blog)
+# arunjacob.com
 
-# next-mdx-blog
+Personal portfolio site of Arun Jacob — senior frontend engineer based in Woodstock, Ontario.
 
-This is a blog template built with:
+Built on [next-mdx-blog](https://github.com/leerob/next-mdx-blog) by [Lee Robinson](https://leerob.com).
 
-- **Framework**: [Next.js](https://nextjs.org)
-- **Deployment**: [Vercel](https://vercel.com)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com)
-- **Analytics**: [Vercel Analytics](https://vercel.com/analytics)
-- **Database** (Optional): [Postgres](https://vercel.com/postgres)
+## Tech Stack
+
+- Next.js, TypeScript, Tailwind CSS
+- MDX for content
+- Deployed on Vercel
 
 ## Running Locally
 
-This application requires Node.js v18.17+.
-
 ```bash
-git clone https://github.com/leerob/next-mdx-blog.git
-cd next-mdx-blog
 pnpm install
 pnpm dev
-```
-
-## Database (Optional)
-
-Create a `.env.local` file with your `POSTGRES_URL` environment variable to store redirects.
-
-```sql
-CREATE TABLE redirects (
-  id SERIAL PRIMARY KEY,
-  source VARCHAR(255) NOT NULL,
-  destination VARCHAR(255) NOT NULL,
-  permanent BOOLEAN NOT NULL
-);
 ```

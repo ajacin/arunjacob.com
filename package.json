@@ -3,8 +3,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start",
-    "delete": "rm -rf app/n"
+    "start": "next start"
   },
   "dependencies": {
     "@next/mdx": "16.1.5",
@@ -12,8 +11,8 @@
     "@types/mdx": "^2.0.13",
     "@vercel/analytics": "^1.5.0",
     "framer-motion": "^12.16.0",
+    "geist": "^1.7.2",
     "next": "16.2.3",
-    "postgres": "^3.4.7",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sugar-high": "^0.9.3"

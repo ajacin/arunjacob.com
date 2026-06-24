@@ -1,12 +1,12 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
-const SITE_URL = 'https://next-mdx-blog.vercel.app';
+const SITE_URL = 'https://arunjacob.com';
 
 async function getNoteSlugs(dir: string) {
   const entries = await fs.readdir(dir, {
     recursive: true,
-    withFileTypes: true
+    withFileTypes: true,
   });
   return entries
     .filter((entry) => entry.isFile() && entry.name === 'page.mdx')
@@ -21,18 +21,24 @@ async function getNoteSlugs(dir: string) {
 }
 
 export default async function sitemap() {
-  const notesDirectory = path.join(process.cwd(), 'app', 'n');
-  const slugs = await getNoteSlugs(notesDirectory);
+  const postsDirectory = path.join(process.cwd(), 'app', 'blog', 'posts');
+  let slugs: string[] = [];
 
-  const notes = slugs.map((slug) => ({
-    url: `${SITE_URL}/n/${slug}`,
-    lastModified: new Date().toISOString()
+  try {
+    slugs = await getNoteSlugs(postsDirectory);
+  } catch {
+    // Posts directory doesn't exist yet
+  }
+
+  const posts = slugs.map((slug) => ({
+    url: `${SITE_URL}/blog/posts/${slug}`,
+    lastModified: new Date().toISOString(),
   }));
 
-  const routes = [''].map((route) => ({
+  const routes = ['', '/work', '/blog'].map((route) => ({
     url: `${SITE_URL}${route}`,
-    lastModified: new Date().toISOString()
+    lastModified: new Date().toISOString(),
   }));
 
-  return [...routes, ...notes];
+  return [...routes, ...posts];
 }
