@@ -17,11 +17,11 @@ export const metadata: Metadata = {
     template: '%s | Arun Jacob',
   },
   description:
-    'Senior frontend engineer. Building GlassNudge and FedNews. Based in Woodstock, Ontario.',
+    'Senior frontend engineer. Building GlassNudge. Based in Woodstock, Ontario.',
   openGraph: {
     title: 'Arun Jacob',
     description:
-      'Senior frontend engineer. Building GlassNudge and FedNews. Based in Woodstock, Ontario.',
+      'Senior frontend engineer. Building GlassNudge. Based in Woodstock, Ontario.',
     url: 'https://arunjacob.com',
     siteName: 'Arun Jacob',
     locale: 'en_CA',
