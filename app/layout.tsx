@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { Analytics } from '@vercel/analytics/react';
 import Nav from '../components/nav';
+import { FooterLinks } from '../components/footer-links';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://arunjacob.com'),
@@ -50,7 +51,7 @@ export default function RootLayout({
             <Nav />
             {children}
           </main>
-          <Footer />
+          <FooterLinks />
           <Analytics />
         </div>
       </body>
@@ -58,51 +59,3 @@ export default function RootLayout({
   );
 }
 
-function Footer() {
-  const links = [
-    { name: 'email', url: 'mailto:hello@arunjacob.com' },
-    { name: 'github', url: 'https://github.com/ajacin' },
-    { name: 'x', url: 'https://x.com/ajacin' },
-    { name: 'linkedin', url: 'https://linkedin.com/in/arunjacob' },
-  ];
-
-  return (
-    <footer className="max-w-[560px] mx-auto w-full mt-12 text-center">
-      <div className="flex justify-center space-x-3 text-sm">
-        {links.map((link, i) => (
-          <span key={link.name} className="flex items-center space-x-3">
-            {i > 0 && <span className="text-[#6B7280] dark:text-[#9CA3AF]">·</span>}
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#2563EB] dark:hover:text-[#60A5FA] transition-colors duration-200"
-            >
-              {link.name}
-            </a>
-          </span>
-        ))}
-      </div>
-      <p className="mt-4 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
-        Site design inspired by{' '}
-        <a
-          href="https://leerob.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#2563EB] dark:hover:text-[#60A5FA] transition-colors"
-        >
-          leerob.com
-        </a>{' '}
-        · Built on{' '}
-        <a
-          href="https://github.com/leerob/next-mdx-blog"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#2563EB] dark:hover:text-[#60A5FA] transition-colors"
-        >
-          next-mdx-blog
-        </a>
-      </p>
-    </footer>
-  );
-}
