@@ -18,11 +18,11 @@ export const metadata: Metadata = {
     template: '%s | Arun Jacob',
   },
   description:
-    'Senior frontend engineer. Building GlassNudge. Based in Woodstock, Ontario.',
+    'Senior frontend engineer open to new roles. Building GlassNudge and FedNews. Based in Woodstock, Ontario.',
   openGraph: {
     title: 'Arun Jacob',
     description:
-      'Senior frontend engineer. Building GlassNudge. Based in Woodstock, Ontario.',
+      'Senior frontend engineer open to new roles. Building GlassNudge and FedNews. Based in Woodstock, Ontario.',
     url: 'https://arunjacob.com',
     siteName: 'Arun Jacob',
     locale: 'en_CA',
@@ -34,6 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: 'Arun Jacob',
+    description:
+      'Senior frontend engineer open to new roles. Building GlassNudge and FedNews. Based in Woodstock, Ontario.',
     card: 'summary_large_image',
   },
 };
