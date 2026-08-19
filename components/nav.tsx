@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 const navItems: Record<string, { name: string }> = {
   '/': { name: 'home' },
   '/work': { name: 'work' },
+  '/learn': { name: 'interview prep' },
 };
 
 export default function Nav() {
