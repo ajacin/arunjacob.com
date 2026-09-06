@@ -3,7 +3,7 @@ import { PrintButton } from '../../components/print-button';
 
 export const metadata: Metadata = {
   title: 'Pictionary Words',
-  description: 'Printable Pictionary word squares - 100 words, one page.',
+  description: 'Printable Pictionary word squares - 100 words across two pages.',
 };
 
 const words: string[] = [
@@ -33,46 +33,51 @@ const words: string[] = [
   'Paradox', 'Enlightenment', 'Equilibrium', 'Black Hole', 'The Meaning of Life',
 ];
 
+const pages = [words.slice(0, 50), words.slice(50, 100)];
+
 const css = `
   .pp { background: #fff; color: #000; padding: 14px 10px 30px; }
   .pp .print-zone { margin-bottom: 10px; }
+  .pp .sheet { page-break-after: always; break-after: page; }
+  .pp .sheet:last-child { page-break-after: auto; break-after: auto; }
   .pp header {
-    text-align: center; margin: 0 0 8px;
-    border-bottom: 1.5px solid #000; padding-bottom: 4px;
+    text-align: center; margin: 0 0 10px;
+    border-bottom: 1.5px solid #000; padding-bottom: 5px;
   }
   .pp h1 {
-    font-size: 16pt; font-weight: bold; text-transform: uppercase;
+    font-size: 17pt; font-weight: bold; text-transform: uppercase;
     letter-spacing: 1px; margin: 0; line-height: 1.2;
   }
-  .pp header p { font-size: 8.5pt; color: #444; margin-top: 2px; }
+  .pp header p { font-size: 9pt; color: #444; margin-top: 2px; }
   .pp .word-grid {
-    display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px;
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px;
   }
   .pp .sq {
     border: 1.5px solid #111; aspect-ratio: 1 / 1;
     display: flex; flex-direction: column; align-items: center;
-    padding: 3px 2px; text-align: center; background: #fff;
+    padding: 6px 3px; text-align: center; background: #fff;
     page-break-inside: avoid; break-inside: avoid; overflow: hidden;
   }
   .pp .sq .n {
-    align-self: flex-start; font-size: 5.5pt; color: #666;
+    align-self: flex-start; font-size: 7pt; color: #555;
     line-height: 1;
   }
   .pp .sq .w {
     flex: 1; display: flex; align-items: center; justify-content: center;
-    font-size: 6.8pt; font-weight: bold; text-transform: uppercase;
-    line-height: 1.15; word-break: break-word; padding: 1px 0;
+    font-size: 10pt; font-weight: bold; text-transform: uppercase;
+    line-height: 1.15; word-break: break-word; padding: 2px 0;
   }
 
   @media screen and (min-width: 820px) {
     body > div { padding: 0 !important; }
     main { max-width: 100% !important; }
-    .pp { max-width: 1100px; margin: 0 auto; padding: 24px 20px 48px; }
-    .pp .word-grid { gap: 10px; }
+    .pp { max-width: 1050px; margin: 0 auto; padding: 24px 20px 48px; }
+    .pp .word-grid { gap: 18px; }
+    .pp .sheet { page-break-after: auto; break-after: auto; margin-bottom: 28px; }
   }
 
   @media print {
-    @page { size: A4 portrait; margin: 8mm; }
+    @page { size: A4 portrait; margin: 12mm; }
     body > div { padding: 0 !important; }
     main { max-width: 100% !important; }
     .pp { padding: 0; }
@@ -88,18 +93,26 @@ export default function PictionaryPage() {
         <div className="print-zone">
           <PrintButton />
         </div>
-        <header>
-          <h1>Pictionary Words</h1>
-          <p>100 words · cut into squares · getting trickier as the numbers climb</p>
-        </header>
-        <div className="word-grid">
-          {words.map((word, i) => (
-            <div className="sq" key={i}>
-              <div className="n">{i + 1}</div>
-              <div className="w">{word}</div>
+
+        {pages.map((chunk, pi) => (
+          <section className="sheet" key={pi}>
+            <header>
+              <h1>Pictionary Words</h1>
+              <p>Page {pi + 1} of {pages.length} · words {chunk[0] && pi * 50 + 1}–{pi * 50 + chunk.length} · cut into squares</p>
+            </header>
+            <div className="word-grid">
+              {chunk.map((word, i) => {
+                const n = pi * 50 + i;
+                return (
+                  <div className="sq" key={n}>
+                    <div className="n">{n + 1}</div>
+                    <div className="w">{word}</div>
+                  </div>
+                );
+              })}
             </div>
-          ))}
-        </div>
+          </section>
+        ))}
       </div>
     </>
   );
