@@ -18,19 +18,17 @@ const words: string[] = [
   'Apple', 'Banana', 'Pizza', 'Cake', 'Egg',
   'Candy', 'Ice Cream', 'Hat', 'Shoe', 'Sock',
   'Heart', 'Snowman', 'Umbrella', 'Lollipop', 'Guitar',
-  // 51-70: a step up, still drawable
-  'Kangaroo', 'Dinosaur', 'Pirate', 'Mermaid', 'Castle',
-  'Volcano', 'Tornado', 'Earthquake', 'Hurricane', 'Lightning',
-  'Snowflake', 'Cactus', 'Helicopter', 'Submarine', 'Rocket',
-  'Lighthouse', 'Skyscraper', 'Rollercoaster', 'Iceberg', 'Giraffe',
-  // 71-90: getting trickier
-  'Silence', 'Echo', 'Mirage', 'Miracle', 'Chaos',
-  'Confusion', 'Disguise', 'Revenge', 'Suspense', 'Amnesia',
-  'Freedom', 'Regret', 'Empathy', 'Jealousy', 'Gossip',
-  'Ambition', 'Tradition', 'Superstition', 'Procrastination', 'Déjà Vu',
-  // 91-100: hardest
-  'Irony', 'Nostalgia', 'Serendipity', 'Metaphor', 'Sarcasm',
-  'Paradox', 'Enlightenment', 'Equilibrium', 'Black Hole', 'The Meaning of Life',
+  // 51-100: object-based words, no emotions
+  'Coconut', 'Crown', 'Oil', 'Hula Hoop', 'State',
+  'Toy', 'Inch', 'Fern', 'Potato', 'Pencil',
+  'Baggage', 'Bike', 'Paper', 'Goblin', 'Stapler',
+  'Third Plate', 'Food', 'Baseball', 'Spaceship', 'Cotton Candy',
+  'Tip', 'Banana Split', 'Melt', 'Castle', 'Rolly Polly',
+  'Puppet', 'Baby', 'Boot', 'Manatee', 'Wallet',
+  'Gum', 'Tongs', 'Scarecrow', 'Waist', 'Hurdle',
+  'Hopscotch', 'Museum', 'Shopping Cart', 'Pollution', 'Dimple',
+  'Magic', 'Skirt', 'Sushi', 'Wreck', 'Gap',
+  'Juice', 'Nest', 'Earmuffs', 'Celery', 'Mirror',
 ];
 
 const pages = [words.slice(0, 50), words.slice(50, 100)];
