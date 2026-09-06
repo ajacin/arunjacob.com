@@ -90,7 +90,7 @@ function CopyButton({ value }: { value: string }) {
 
 export function FooterLinks() {
   return (
-    <footer className="max-w-[560px] mx-auto w-full mt-12 text-center">
+    <footer className="max-w-[560px] mx-auto w-full mt-12 text-center print:hidden">
       <div className="flex justify-center space-x-3 text-sm">
         {links.map((link, i) => (
           <span key={link.name} className="flex items-center space-x-3">

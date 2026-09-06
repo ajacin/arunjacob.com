@@ -13,7 +13,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex space-x-4 mb-9">
+    <nav className="flex space-x-4 mb-9 print:hidden">
       {Object.entries(navItems).map(([path, { name }]) => {
         const isActive = pathname === path;
         return (
