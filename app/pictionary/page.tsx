@@ -3,10 +3,11 @@ import { PrintButton } from '../../components/print-button';
 
 export const metadata: Metadata = {
   title: 'Pictionary Words',
-  description: 'Printable Pictionary word squares - 50 easy words, one page.',
+  description: 'Printable Pictionary word squares - 100 words, one page.',
 };
 
 const words: string[] = [
+  // 1-50: easy, drawable
   'Sun', 'Moon', 'Star', 'Cloud', 'Rainbow',
   'Tree', 'Flower', 'Leaf', 'Mountain', 'River',
   'Cat', 'Dog', 'Bird', 'Fish', 'Rabbit',
@@ -17,6 +18,19 @@ const words: string[] = [
   'Apple', 'Banana', 'Pizza', 'Cake', 'Egg',
   'Candy', 'Ice Cream', 'Hat', 'Shoe', 'Sock',
   'Heart', 'Snowman', 'Umbrella', 'Lollipop', 'Guitar',
+  // 51-70: a step up, still drawable
+  'Kangaroo', 'Dinosaur', 'Pirate', 'Mermaid', 'Castle',
+  'Volcano', 'Tornado', 'Earthquake', 'Hurricane', 'Lightning',
+  'Snowflake', 'Cactus', 'Helicopter', 'Submarine', 'Rocket',
+  'Lighthouse', 'Skyscraper', 'Rollercoaster', 'Iceberg', 'Giraffe',
+  // 71-90: getting trickier
+  'Silence', 'Echo', 'Mirage', 'Miracle', 'Chaos',
+  'Confusion', 'Disguise', 'Revenge', 'Suspense', 'Amnesia',
+  'Freedom', 'Regret', 'Empathy', 'Jealousy', 'Gossip',
+  'Ambition', 'Tradition', 'Superstition', 'Procrastination', 'Déjà Vu',
+  // 91-100: hardest
+  'Irony', 'Nostalgia', 'Serendipity', 'Metaphor', 'Sarcasm',
+  'Paradox', 'Enlightenment', 'Equilibrium', 'Black Hole', 'The Meaning of Life',
 ];
 
 const css = `
@@ -32,29 +46,29 @@ const css = `
   }
   .pp header p { font-size: 8.5pt; color: #444; margin-top: 2px; }
   .pp .word-grid {
-    display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px;
+    display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px;
   }
   .pp .sq {
     border: 1.5px solid #111; aspect-ratio: 1 / 1;
     display: flex; flex-direction: column; align-items: center;
-    padding: 4px 2px; text-align: center; background: #fff;
+    padding: 3px 2px; text-align: center; background: #fff;
     page-break-inside: avoid; break-inside: avoid; overflow: hidden;
   }
   .pp .sq .n {
-    align-self: flex-start; font-size: 6.5pt; color: #555;
+    align-self: flex-start; font-size: 5.5pt; color: #666;
     line-height: 1;
   }
   .pp .sq .w {
     flex: 1; display: flex; align-items: center; justify-content: center;
-    font-size: 8.5pt; font-weight: bold; text-transform: uppercase;
-    line-height: 1.15; word-break: break-word; padding: 2px 0;
+    font-size: 6.8pt; font-weight: bold; text-transform: uppercase;
+    line-height: 1.15; word-break: break-word; padding: 1px 0;
   }
 
   @media screen and (min-width: 820px) {
     body > div { padding: 0 !important; }
     main { max-width: 100% !important; }
-    .pp { max-width: 1000px; margin: 0 auto; padding: 24px 20px 48px; }
-    .pp .word-grid { gap: 12px; }
+    .pp { max-width: 1100px; margin: 0 auto; padding: 24px 20px 48px; }
+    .pp .word-grid { gap: 10px; }
   }
 
   @media print {
@@ -76,11 +90,11 @@ export default function PictionaryPage() {
         </div>
         <header>
           <h1>Pictionary Words</h1>
-          <p>50 words · cut into squares</p>
+          <p>100 words · cut into squares · getting trickier as the numbers climb</p>
         </header>
         <div className="word-grid">
           {words.map((word, i) => (
-            <div className="sq" key={word}>
+            <div className="sq" key={i}>
               <div className="n">{i + 1}</div>
               <div className="w">{word}</div>
             </div>
