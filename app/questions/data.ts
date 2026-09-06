@@ -1,0 +1,76 @@
+export interface Category {
+  emoji: string;
+  name: string;
+  questions: string[];
+}
+
+export const categories: Category[] = [
+  {
+    emoji: '👶',
+    name: 'Pregnancy, Baby & Preparation',
+    questions: [
+      'Who is more likely to panic when the baby starts crying?',
+      'Who will be better at calming the baby down?',
+      'Who will wake up first when the baby makes a noise?',
+      'Who will be more excited about buying baby toys?',
+      'Who will read more parenting books?',
+      'Who will be more protective of the baby?',
+      'Who will be more relaxed about parenting advice from others?',
+      'Who will take more pictures of the baby sleeping?',
+      "Who will be more excited about the baby's first birthday?",
+      "Who will want to plan every detail of the baby's first birthday?",
+      'Who will be more likely to baby-proof the entire house?',
+      'Who will be better at getting the baby to sleep?',
+      'Who will sing more songs to the baby?',
+      'Who will make up silly nicknames for the baby?',
+      "Who will be more excited to buy the baby's first Halloween costume?",
+      "Who will save more of the baby's keepsakes and memories?",
+      "Who will be more likely to buy something for the baby that isn't actually needed?",
+      "Who will be more excited about taking the baby on their first family vacation?",
+      'Who will be more likely to sneak into the nursery just to check on the baby?',
+      `Who will be the first to say, "I can't believe how big our baby is getting!"?`,
+    ],
+  },
+  {
+    emoji: '🍼',
+    name: 'Parenting & Baby Predictions',
+    questions: [
+      'Who will be more likely to spoil the baby?',
+      'Who will teach the baby the funniest things?',
+      'Who will be better at telling bedtime stories?',
+      'Who will be more likely to let the baby stay up past bedtime?',
+      'Who will be more likely to say, "Ask your mom/dad"?',
+      "Who will be more competitive at the baby's school events?",
+      'Who will help more with school projects?',
+      "Who will be more excited about the baby's first day of school?",
+      'Who will have a harder time letting the baby grow up?',
+      'Who will be the first to embarrass the child in front of their friends?',
+      'Who will teach the baby how to dance?',
+      'Who will teach the baby how to ride a bike?',
+      'Who will be more likely to say, "When I was your age..."?',
+      'Who will be more likely to sneak the child an extra dessert?',
+      "Who will be the better storyteller about the baby's childhood?",
+      'Who will be more likely to keep every drawing the child brings home?',
+      'Who will be more excited about attending school plays and performances?',
+      "Who will be more likely to cheer the loudest at the child's sports games?",
+      "Who will be more likely to become friends with the child's friends' parents?",
+      'Who will be more likely to embarrass the child with old baby photos?',
+    ],
+  },
+  {
+    emoji: '❤️',
+    name: 'Couple, Family & Fun',
+    questions: [
+      'Who will say "we should have another baby" first?',
+      'Who will be more likely to plan a family game night?',
+      'Who will be more likely to organize a family vacation?',
+      'Who will be more likely to fall asleep while putting the baby to sleep?',
+      'Who will be more likely to accidentally call the baby by the wrong name?',
+      'Who will be more likely to use a silly baby voice?',
+      'Who will be more likely to turn a simple family outing into a full-day adventure?',
+      'Who will be more likely to teach the baby a funny family tradition?',
+      'Who will be more emotional when looking back at baby photos years from now?',
+      'Who will be the baby’s favorite parent? 😄',
+    ],
+  },
+];
