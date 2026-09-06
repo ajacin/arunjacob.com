@@ -69,34 +69,35 @@ const css = `
   .mp { background: #fff; color: #000; padding: 14px 10px 30px; }
   .mp .print-zone { margin-bottom: 14px; }
   .mp header {
-    text-align: center; margin: 0 0 18px;
-    border-bottom: 2px solid #000; padding-bottom: 10px;
+    text-align: center; margin: 0 0 8px;
+    border-bottom: 1.5px solid #000; padding-bottom: 4px;
   }
   .mp h1 {
-    font-size: 24pt; font-weight: bold; text-transform: uppercase;
-    letter-spacing: 1px; margin: 0;
+    font-size: 15pt; font-weight: bold; text-transform: uppercase;
+    letter-spacing: 1px; margin: 0; line-height: 1.15;
   }
-  .mp header p { font-size: 10pt; color: #444; margin-top: 4px; }
+  .mp header p { font-size: 8pt; color: #444; margin-top: 2px; }
   .mp .movies-grid {
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+    display: grid; grid-template-columns: repeat(8, 1fr); gap: 7px;
   }
   .mp .card {
-    border: 2px solid #000; aspect-ratio: 2 / 3;
+    border: 1.5px solid #000; aspect-ratio: 5 / 7;
     display: flex; flex-direction: column; justify-content: space-between;
-    align-items: center; padding: 10px 6px; text-align: center;
+    align-items: center; padding: 3px 3px; text-align: center;
     background: #fff; page-break-inside: avoid; break-inside: avoid;
+    overflow: hidden;
   }
   .mp .number {
-    font-size: 9pt; font-weight: bold; align-self: flex-start;
-    border: 1px solid #000; padding: 1px 5px; border-radius: 3px;
+    font-size: 6pt; font-weight: bold; align-self: flex-start;
+    border: 1px solid #000; padding: 0 3px; border-radius: 2px;
   }
   .mp .title {
-    font-size: 11pt; font-weight: bold; line-height: 1.2;
+    font-size: 7pt; font-weight: bold; line-height: 1.15;
     margin: auto 0; text-transform: uppercase; word-break: break-word;
   }
   .mp .year {
-    font-size: 9pt; font-weight: bold; border-top: 1px solid #000;
-    width: 100%; padding-top: 4px;
+    font-size: 6.5pt; font-weight: bold; border-top: 1px solid #000;
+    width: 100%; padding-top: 2px;
   }
 
   @media screen and (min-width: 820px) {
@@ -106,7 +107,7 @@ const css = `
   }
 
   @media print {
-    @page { size: A4 portrait; margin: 10mm; }
+    @page { size: A4 portrait; margin: 8mm; }
     body > div { padding: 0 !important; }
     main { max-width: 100% !important; }
     .mp { padding: 0; }
