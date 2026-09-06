@@ -1,46 +1,11 @@
 import type { Metadata } from 'next';
 import { PrintButton } from '../../components/print-button';
+import { words } from './words';
 
 export const metadata: Metadata = {
   title: 'Pictionary Words',
-  description: 'Printable Pictionary word squares - 150 words across three pages.',
+  description: 'Printable Pictionary word squares - easy and hard words shuffled, across multiple pages.',
 };
-
-const words: string[] = [
-  // 1-50: easy, drawable
-  'Sun', 'Moon', 'Star', 'Cloud', 'Rainbow',
-  'Tree', 'Flower', 'Leaf', 'Mountain', 'River',
-  'Cat', 'Dog', 'Bird', 'Fish', 'Rabbit',
-  'Horse', 'Frog', 'Bee', 'Duck', 'Lion',
-  'House', 'Car', 'Bus', 'Boat', 'Train',
-  'Plane', 'Bicycle', 'Ball', 'Kite', 'Book',
-  'Clock', 'Key', 'Phone', 'Cup', 'Plate',
-  'Apple', 'Banana', 'Pizza', 'Cake', 'Egg',
-  'Candy', 'Ice Cream', 'Hat', 'Shoe', 'Sock',
-  'Heart', 'Snowman', 'Umbrella', 'Lollipop', 'Guitar',
-  // 51-100: object-based words, no emotions
-  'Coconut', 'Crown', 'Oil', 'Hula Hoop', 'State',
-  'Toy', 'Inch', 'Fern', 'Potato', 'Pencil',
-  'Baggage', 'Bike', 'Paper', 'Goblin', 'Stapler',
-  'Third Plate', 'Food', 'Baseball', 'Spaceship', 'Cotton Candy',
-  'Tip', 'Banana Split', 'Melt', 'Castle', 'Rolly Polly',
-  'Puppet', 'Baby', 'Boot', 'Manatee', 'Wallet',
-  'Gum', 'Tongs', 'Scarecrow', 'Waist', 'Hurdle',
-  'Hopscotch', 'Museum', 'Shopping Cart', 'Pollution', 'Dimple',
-  'Magic', 'Skirt', 'Sushi', 'Wreck', 'Gap',
-  'Juice', 'Nest', 'Earmuffs', 'Celery', 'Mirror',
-  // 101-150: really hard
-  'Thunder', 'Hand Soap', 'Stuffed Animal', 'Carat', 'Great-Grandfather',
-  'Spare', 'Landlord', 'Pain', 'Ginger', 'Coastline',
-  'Ceiling Fan', 'Sunburn', 'Living Room', 'Sponge', 'Vet',
-  'Season', 'Knight', 'Gold', 'Attack', 'Putty',
-  'Oxcart', 'Moth', 'Baseboards', 'Win', 'Fabric',
-  'Chicken Coop', 'Deep', 'Welder', 'Yolk', 'Tip',
-  'Sushi', 'Cell Phone Charger', 'Publisher', 'Guarantee', 'University',
-  'Raft', 'Cargo', 'Manatee', 'Sun Block', 'Stationery',
-  'Shack', 'Bedbug', 'Cloak', 'Tourist', 'Cruise Ship',
-  'Double', 'Jedi', 'Stay', 'Wax', 'Chef',
-];
 
 const SIZE = 50;
 const pages: string[][] = [];
@@ -111,11 +76,14 @@ export default function PictionaryPage() {
           <section className="sheet" key={pi}>
             <header>
               <h1>Pictionary Words</h1>
-              <p>Page {pi + 1} of {pages.length} · words {chunk[0] && pi * 50 + 1}–{pi * 50 + chunk.length} · cut into squares</p>
+              <p>
+                Page {pi + 1} of {pages.length} · words {pi * SIZE + 1}–
+                {pi * SIZE + chunk.length} · cut into squares
+              </p>
             </header>
             <div className="word-grid">
               {chunk.map((word, i) => {
-                const n = pi * 50 + i;
+                const n = pi * SIZE + i;
                 return (
                   <div className="sq" key={n}>
                     <div className="n">{n + 1}</div>
