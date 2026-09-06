@@ -60,6 +60,9 @@ export default function QuestionsApp() {
   const [editing, setEditing] = useState(false);
   const [aDraft, setADraft] = useState(DEFAULT_SAVED.a);
   const [bDraft, setBDraft] = useState(DEFAULT_SAVED.b);
+  const [showPass, setShowPass] = useState(false);
+  const [pass, setPass] = useState('');
+  const [passError, setPassError] = useState(false);
 
   useEffect(() => {
     setSaved(readSaved());
@@ -119,10 +122,19 @@ export default function QuestionsApp() {
     setEditing(false);
   };
 
-  const clearAll = () => {
-    if (typeof window === 'undefined') return;
-    if (!window.confirm('Clear all answers on this device?')) return;
+  const clearAll = () =>
     setSaved((s) => (s ? { ...s, answers: {} } : s));
+
+  const submitReset = () => {
+    if (pass === 'baby') {
+      clearAll();
+      setShowPass(false);
+      setPass('');
+      setPassError(false);
+    } else {
+      setPassError(true);
+      setPass('');
+    }
   };
 
   if (!saved) {
@@ -331,7 +343,7 @@ export default function QuestionsApp() {
             </button>
             <button
               type="button"
-              onClick={clearAll}
+              onClick={() => setShowPass(true)}
               className="hover:underline cursor-pointer"
             >
               Reset everything
@@ -435,6 +447,60 @@ export default function QuestionsApp() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      )}
+
+      {showPass && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/40 flex items-center justify-center p-6"
+          onClick={() => setShowPass(false)}
+        >
+          <div
+            className="w-full max-w-[360px] rounded-2xl bg-[#FAFAF9] dark:bg-[#171717] p-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="text-base font-semibold text-[#1A1A1A] dark:text-[#EBEBEA] mb-1">
+              Reset everything?
+            </h2>
+            <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF] mb-4">
+              This clears all answers and both scores on this device.
+            </p>
+            <input
+              autoFocus
+              type="password"
+              value={pass}
+              onChange={(e) => {
+                setPass(e.target.value);
+                setPassError(false);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') submitReset();
+              }}
+              placeholder="Password"
+              className="w-full rounded-lg border border-[#E5E5E4] dark:border-[#2E2E2D] bg-white dark:bg-[#191918] px-3 py-2 text-sm text-[#1A1A1A] dark:text-[#EBEBEA] outline-none focus:border-[#2563EB] mb-2"
+            />
+            {passError && (
+              <p className="text-xs text-[#BE2E6D] dark:text-[#F9A8C4] mb-3">
+                Incorrect password. Try again.
+              </p>
+            )}
+            <div className="flex justify-end gap-2 mt-2">
+              <button
+                type="button"
+                onClick={() => setShowPass(false)}
+                className="rounded-lg px-4 py-2 text-sm text-[#6B7280] dark:text-[#9CA3AF] hover:underline cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={submitReset}
+                className="rounded-lg bg-[#BE2E6D] dark:bg-[#F9A8C4] px-4 py-2 text-sm font-medium text-white dark:text-[#111110] hover:opacity-85 cursor-pointer"
+              >
+                Reset
+              </button>
+            </div>
           </div>
         </div>
       )}
