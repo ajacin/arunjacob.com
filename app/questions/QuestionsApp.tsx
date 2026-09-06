@@ -135,6 +135,35 @@ export default function QuestionsApp() {
 
   const nameFor = (c: Choice) => (c === 'a' ? saved.a : saved.b);
 
+  const scoreOf = (c: Choice) =>
+    Object.values(saved.answers).filter((v) => v === c).length;
+  const scoreA = scoreOf('a');
+  const scoreB = scoreOf('b');
+  const answeredHere = idx in saved.answers;
+
+  const categoryFirstIndex = (ci: number) =>
+    categories
+      .slice(0, ci)
+      .reduce((n, c) => n + c.questions.length, 0);
+
+  const clearIndices = (indices: number[]) => {
+    setSaved((s) => {
+      if (!s) return s;
+      const answers = { ...s.answers };
+      for (const i of indices) delete answers[i];
+      return { ...s, answers };
+    });
+  };
+  const clearCurrent = () => clearIndices([idx]);
+  const resetCategory = (ci: number) => {
+    const start = categoryFirstIndex(ci);
+    const inds = Array.from(
+      { length: categories[ci].questions.length },
+      (_, i) => start + i
+    );
+    clearIndices(inds);
+  };
+
   return (
     <div>
       {/* Progress */}
@@ -201,6 +230,23 @@ export default function QuestionsApp() {
         })}
       </div>
 
+      {/* Score so far */}
+      <div className="mb-4 flex items-center justify-between rounded-xl border border-[#E5E5E4] dark:border-[#2E2E2D] bg-white dark:bg-[#191918] px-4 py-3 text-sm">
+        <span className="text-xs uppercase tracking-wide text-[#6B7280] dark:text-[#9CA3AF]">
+          Score
+        </span>
+        <span className="flex items-center gap-4 font-medium">
+          <span className="flex items-center gap-1.5 text-[#1A1A1A] dark:text-[#EBEBEA]">
+            <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#EC4899]" />
+            {saved.a} · {scoreA}
+          </span>
+          <span className="flex items-center gap-1.5 text-[#1A1A1A] dark:text-[#EBEBEA]">
+            <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#2563EB]" />
+            {saved.b} · {scoreB}
+          </span>
+        </span>
+      </div>
+
       {/* Nav controls */}
       <div className="flex items-center justify-between gap-3 mb-4">
         <button
@@ -232,6 +278,15 @@ export default function QuestionsApp() {
 
       {/* Utility row */}
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+        {answeredHere && (
+          <button
+            type="button"
+            onClick={clearCurrent}
+            className="text-[#BE2E6D] dark:text-[#F9A8C4] hover:underline cursor-pointer"
+          >
+            ↺ Clear this answer
+          </button>
+        )}
         {editing ? (
           <span className="inline-flex flex-wrap items-center gap-2">
             <input
@@ -279,7 +334,7 @@ export default function QuestionsApp() {
               onClick={clearAll}
               className="hover:underline cursor-pointer"
             >
-              Clear answers
+              Reset everything
             </button>
           </>
         )}
@@ -319,13 +374,24 @@ export default function QuestionsApp() {
               ).filter((gi) => saved.answers[gi]).length;
               return (
                 <div key={cat.name} className="mb-5">
-                  <div className="flex items-baseline justify-between mb-2">
+                  <div className="flex items-center justify-between mb-2">
                     <h3 className="text-sm font-medium text-[#1A1A1A] dark:text-[#EBEBEA]">
                       <span className="mr-1.5">{cat.emoji}</span>
                       {cat.name}
                     </h3>
-                    <span className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
-                      {done}/{cat.questions.length}
+                    <span className="flex items-center gap-3">
+                      <span className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+                        {done}/{cat.questions.length}
+                      </span>
+                      {done > 0 && (
+                        <button
+                          type="button"
+                          onClick={() => resetCategory(ci)}
+                          className="text-xs text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#BE2E6D] dark:hover:text-[#F9A8C4] hover:underline cursor-pointer"
+                        >
+                          reset
+                        </button>
+                      )}
                     </span>
                   </div>
                   <ol className="space-y-1">
