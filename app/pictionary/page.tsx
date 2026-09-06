@@ -3,7 +3,7 @@ import { PrintButton } from '../../components/print-button';
 
 export const metadata: Metadata = {
   title: 'Pictionary Words',
-  description: 'Printable Pictionary word squares - 100 words across two pages.',
+  description: 'Printable Pictionary word squares - 150 words across three pages.',
 };
 
 const words: string[] = [
@@ -29,9 +29,24 @@ const words: string[] = [
   'Hopscotch', 'Museum', 'Shopping Cart', 'Pollution', 'Dimple',
   'Magic', 'Skirt', 'Sushi', 'Wreck', 'Gap',
   'Juice', 'Nest', 'Earmuffs', 'Celery', 'Mirror',
+  // 101-150: really hard
+  'Thunder', 'Hand Soap', 'Stuffed Animal', 'Carat', 'Great-Grandfather',
+  'Spare', 'Landlord', 'Pain', 'Ginger', 'Coastline',
+  'Ceiling Fan', 'Sunburn', 'Living Room', 'Sponge', 'Vet',
+  'Season', 'Knight', 'Gold', 'Attack', 'Putty',
+  'Oxcart', 'Moth', 'Baseboards', 'Win', 'Fabric',
+  'Chicken Coop', 'Deep', 'Welder', 'Yolk', 'Tip',
+  'Sushi', 'Cell Phone Charger', 'Publisher', 'Guarantee', 'University',
+  'Raft', 'Cargo', 'Manatee', 'Sun Block', 'Stationery',
+  'Shack', 'Bedbug', 'Cloak', 'Tourist', 'Cruise Ship',
+  'Double', 'Jedi', 'Stay', 'Wax', 'Chef',
 ];
 
-const pages = [words.slice(0, 50), words.slice(50, 100)];
+const SIZE = 50;
+const pages: string[][] = [];
+for (let i = 0; i < words.length; i += SIZE) {
+  pages.push(words.slice(i, i + SIZE));
+}
 
 const css = `
   .pp { background: #fff; color: #000; padding: 14px 10px 30px; }
