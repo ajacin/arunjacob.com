@@ -74,6 +74,9 @@ export default function MermaidDiagram({ chart }: MermaidDiagramProps) {
         <p className="text-sm text-red-600 dark:text-red-400 font-medium mb-2">
           Diagram render error
         </p>
+        <p className="text-xs text-red-500 dark:text-red-400 mb-2 font-mono">
+          {error}
+        </p>
         <pre className="text-xs text-red-500 dark:text-red-400 overflow-x-auto whitespace-pre-wrap">
           {chart}
         </pre>

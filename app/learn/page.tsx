@@ -165,22 +165,22 @@ export default function LearnPage() {
         remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ children, ...props }) => (
-            <h1 className="text-[22px] font-medium text-[#1A1A1A] dark:text-[#EBEBEA] mb-6" {...props}>
+            <h1 className="text-[26px] font-semibold text-[#1A1A1A] dark:text-[#EBEBEA] mt-10 mb-5" {...props}>
               {children}
             </h1>
           ),
           h2: ({ children, ...props }) => (
-            <h2 className="text-[#1A1A1A] dark:text-[#EBEBEA] font-medium mt-8 mb-3" {...props}>
+            <h2 className="text-[20px] font-semibold text-[#1A1A1A] dark:text-[#EBEBEA] mt-10 mb-4" {...props}>
               {children}
             </h2>
           ),
           h3: ({ children, ...props }) => (
-            <h3 className="text-[#1A1A1A] dark:text-[#EBEBEA] font-medium mt-8 mb-3" {...props}>
+            <h3 className="text-[17px] font-medium text-[#1A1A1A] dark:text-[#EBEBEA] mt-8 mb-3" {...props}>
               {children}
             </h3>
           ),
           h4: ({ children, ...props }) => (
-            <h4 className="font-medium" {...props}>
+            <h4 className="text-[15px] font-medium text-[#1A1A1A] dark:text-[#EBEBEA] mt-6 mb-2" {...props}>
               {children}
             </h4>
           ),

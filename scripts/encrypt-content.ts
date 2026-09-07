@@ -36,6 +36,22 @@ function preprocessMarkdown(content: string): string {
   // 4. Convert remaining [[wiki links]] -> plain text (remove brackets)
   content = content.replace(/\[\[([^\]]+)\]\]/g, '$1');
 
+  // 5. Fix mermaid edge labels containing grammar-special characters.
+  //    Mermaid parses `{`, `}`, `(`, `)`, `[`, `]` in `-->|label|` edges as
+  //    syntax, which throws a parse error. Quoting the label makes it plain
+  //    text again.
+  content = content.replace(/```mermaid\n([\s\S]*?)```/g, (block) =>
+    block.replace(
+      /(-+>|-\.-+>|=+>)\|([^|"][^|]*)\|/g,
+      (_edge, arrow: string, label: string) => {
+        if (/[{}()[\]}]/.test(label)) {
+          return `${arrow}|"${label}"|`;
+        }
+        return `${arrow}|${label}|`;
+      },
+    ),
+  );
+
   return content;
 }
 
