@@ -3,7 +3,9 @@ import type { ReactNode } from 'react';
 import { Checklist } from '../../components/placement-checklist';
 
 export const metadata: Metadata = {
-  title: 'Practical Nursing at Fanshawe Woodstock',
+  // `absolute` bypasses the root layout's "%s | Arun Jacob" template — this
+  // page is shared publicly and shouldn't carry the site owner's name.
+  title: { absolute: 'Practical Nursing at Fanshawe Woodstock' },
   description:
     'Intakes, admission requirements, deadlines and the three-year part-time course plan for the Practical Nursing diploma at Fanshawe College’s Woodstock campus.',
   alternates: {
