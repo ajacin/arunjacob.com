@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface LinkItem {
   name: string;
@@ -89,6 +90,11 @@ function CopyButton({ value }: { value: string }) {
 }
 
 export function FooterLinks() {
+  const pathname = usePathname();
+
+  // /rpn is shared publicly and carries no personal contact details.
+  if (pathname?.startsWith('/rpn')) return null;
+
   return (
     <footer className="max-w-[560px] mx-auto w-full mt-12 text-center print:hidden">
       <div className="flex justify-center space-x-3 text-sm">
