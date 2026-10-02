@@ -33,6 +33,14 @@ yarn-error.log*
 # committing them defeats the encryption on the page that ships the ciphertext.
 /content-private/
 
+# Local scratch scripts. verify-decrypt.mjs matters most: it holds a page
+# password in plaintext, so committing it would undo the encryption on the
+# pages it verifies. Ignoring the file keeps it off `git add .`; it does not
+# remove the plaintext from disk.
+/scripts/verify-decrypt.mjs
+/scripts/t[0-9]*.mjs
+/scripts/test-*.mjs
+
 # vercel
 .vercel
 
