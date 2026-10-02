@@ -29,6 +29,10 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# Plaintext sources for encrypted pages. These must never be committed —
+# committing them defeats the encryption on the page that ships the ciphertext.
+/content-private/
+
 # vercel
 .vercel
 
