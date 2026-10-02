@@ -92,8 +92,8 @@ function CopyButton({ value }: { value: string }) {
 export function FooterLinks() {
   const pathname = usePathname();
 
-  // /rpn is shared publicly and carries no personal contact details.
-  if (pathname?.startsWith('/rpn')) return null;
+  // /rpn and /psw are shared publicly and carry no personal contact details.
+  if (pathname?.startsWith('/rpn') || pathname?.startsWith('/psw')) return null;
 
   return (
     <footer className="max-w-[560px] mx-auto w-full mt-12 text-center print:hidden">

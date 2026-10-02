@@ -13,20 +13,27 @@ export interface ChecklistGroup {
   items: ChecklistItem[];
 }
 
-const STORAGE_KEY = 'fanshawe-pn-placement-v1';
+const DEFAULT_STORAGE_KEY = 'fanshawe-pn-placement-v1';
 
-export function Checklist({ groups }: { groups: ChecklistGroup[] }) {
+export function Checklist({
+  groups,
+  storageKey = DEFAULT_STORAGE_KEY,
+}: {
+  groups: ChecklistGroup[];
+  // Each program page gets its own key so ticks don't bleed between them.
+  storageKey?: string;
+}) {
   const [checked, setChecked] = useState<Record<string, boolean>>({});
 
   // Restore after mount so the server-rendered markup stays stable.
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(storageKey);
       if (raw) setChecked(JSON.parse(raw));
     } catch {
       // Storage unavailable (private mode, blocked cookies) — fall back to unchecked.
     }
-  }, []);
+  }, [storageKey]);
 
   function toggle(id: string) {
     setChecked((prev) => {
@@ -37,7 +44,7 @@ export function Checklist({ groups }: { groups: ChecklistGroup[] }) {
         next[id] = true;
       }
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+        localStorage.setItem(storageKey, JSON.stringify(next));
       } catch {
         // Persisting is a convenience; the checkbox still works without it.
       }

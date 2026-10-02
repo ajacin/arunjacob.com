@@ -12,9 +12,9 @@ const navItems: Record<string, { name: string }> = {
 export default function Nav() {
   const pathname = usePathname();
 
-  // /rpn is a standalone reference page shared with people outside the site.
-  // Keep the personal nav off it.
-  if (pathname?.startsWith('/rpn')) return null;
+  // /rpn and /psw are standalone reference pages shared with people outside the
+  // site. Keep the personal nav off them.
+  if (pathname?.startsWith('/rpn') || pathname?.startsWith('/psw')) return null;
 
   return (
     <nav className="flex space-x-4 mb-9 print:hidden">
