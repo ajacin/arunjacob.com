@@ -24,15 +24,7 @@ function CodeBlock({ inline, className, children, ...props }: CodeComponentProps
   const codeString = String(children).replace(/\n$/, '');
 
   if (language === 'mermaid' && !inline) {
-    // MermaidDiagram pins a light theme (dark node text on a transparent
-    // background), so on the site's dark background the diagrams would render
-    // near-invisible. Give them a light panel of their own instead of changing
-    // the shared component, which /learn also depends on.
-    return (
-      <div className="my-6 rounded-lg border border-gray-200 dark:border-zinc-700 bg-[#FCFCFB] dark:bg-[#F5F5F3] p-4">
-        <MermaidDiagram chart={codeString} />
-      </div>
-    );
+    return <MermaidDiagram chart={codeString} />;
   }
 
   if (inline) {
