@@ -3,15 +3,15 @@
 import EncryptedMarkdownPage from '@/components/encrypted-markdown-page';
 import { salt, iv, ciphertext } from './encrypted-content';
 
-export default function GlassNudgeSystemPage() {
+export default function GlassNudgeAiPage() {
   return (
     <EncryptedMarkdownPage
-      title="GlassNudge — System Design"
-      cacheKey="glassnudge-system-plaintext"
+      title="How I Use AI"
+      cacheKey="glassnudge-ai-plaintext"
       salt={salt}
       iv={iv}
       ciphertext={ciphertext}
-      variant="wide"
+      variant="prose"
     />
   );
 }
