@@ -1,56 +1,23 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import { getPosts } from '../../lib/posts';
 
-interface Post {
-  slug: string;
-  title: string;
-  publishedAt: string;
-  summary: string;
+export async function generateMetadata(): Promise<Metadata> {
+  const posts = await getPosts();
+
+  return {
+    title: 'Blog',
+    description: 'Writing on frontend engineering, Rust, and indie hacking.',
+    alternates: {
+      canonical: '/blog',
+      types: { 'application/rss+xml': '/blog/rss.xml' },
+    },
+    // An empty blog is a soft 404. Keep it out of search until it has content.
+    robots: posts.length
+      ? { index: true, follow: true }
+      : { index: false, follow: false },
+  };
 }
-
-async function getPosts(): Promise<Post[]> {
-  const postsDir = path.join(process.cwd(), 'app', 'blog', 'posts');
-
-  try {
-    await fs.access(postsDir);
-  } catch {
-    return [];
-  }
-
-  const entries = await fs.readdir(postsDir, { withFileTypes: true });
-  const slugs = entries
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name);
-
-  const posts: Post[] = [];
-
-  for (const slug of slugs) {
-    try {
-      const { metadata } = await import(`./posts/${slug}/page.mdx`);
-      posts.push({
-        slug,
-        title: metadata.title,
-        publishedAt: metadata.publishedAt,
-        summary: metadata.summary,
-      });
-    } catch {
-      // Skip posts that fail to load
-    }
-  }
-
-  posts.sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
-
-  return posts;
-}
-
-export const metadata = {
-  title: 'Blog',
-  description: 'Writing on frontend engineering, Rust, and indie hacking.',
-};
 
 export default async function BlogPage() {
   const posts = await getPosts();
@@ -62,7 +29,14 @@ export default async function BlogPage() {
       </h1>
       <p className="text-[#1A1A1A] dark:text-[#EBEBEA] leading-[1.75] mb-8">
         Thoughts on frontend engineering, building with Rust, and indie
-        hacking.
+        hacking.{' '}
+        <Link
+          href="/blog/rss.xml"
+          aria-label="Subscribe to the RSS feed"
+          className="text-[#2563EB] hover:text-[#1A1A1A] dark:text-[#60A5FA] dark:hover:text-[#EBEBEA] transition-colors text-sm font-medium"
+        >
+          RSS
+        </Link>
       </p>
 
       {posts.length === 0 ? (

@@ -1,24 +1,69 @@
+export const metadata = {
+  title: 'Work',
+  description:
+    'Experience timeline: front-end engineering at Fullscript, Publicis Sapient on the Loblaw pharmacy platform, i-exceed, and Oracle Financial Services — plus two projects built on the side.',
+  alternates: { canonical: '/work' },
+};
+
+import { ProjectCard } from '../../components/project-card';
+import { glassNudge, fedNews } from '../../lib/projects';
+
 # Work
 
-Over the past decade I've shipped product interfaces at scale — the kind where the UI is the product. Here's some of what that's looked like.
+Over the past decade I've shipped product interfaces at scale — the kind where the UI is the product. A timeline of where that work happened, followed by a couple of things I've built on my own.
 
-## Healthcare at scale
+## Fullscript
 
-The core challenge at **Fullscript** is making complex clinical workflows feel simple. I lead frontend architecture for growth initiatives across a platform serving 125,000+ practitioners and 5M+ patients.
+**Developer III, Front End** · Sep 2023 – Apr 2026 · Ottawa, Canada (Remote)
 
-Partnering with Data and Analytics, I've run A/B tests that lifted sign-up-to-first-prescription conversion by 19%. I re-engineered the cross-platform auto-refill journey across React Native and web, designed the GraphQL schema and component systems that teams build on, and set frontend engineering standards. I also ship backend changes in Ruby using AI-assisted workflows.
+- Partnered with Data and Analytics on Mixpanel A/B tests across onboarding, lifting sign-up-to-first-prescription conversion 19%.
+- Re-engineered the cross-platform auto-refill experience with same-date delivery consolidation, removing UI state drift between web and mobile.
+- Extended the shared component library with new prop APIs, implementing ARIA patterns, keyboard navigation, and WCAG 2.1 AA remediation.
 
-Stack: React, TypeScript, GraphQL, Redux, React Native, Ruby.
+<p className="text-sm text-[#6B7280] dark:text-[#9CA3AF] mt-3">React · TypeScript · GraphQL · React Native · Ruby</p>
 
-## Financial systems
+## Publicis Sapient
 
-I spent seven years at **Oracle Financial Services** building UIs for some of the world's largest financial institutions. I led the frontend for OBCLPM Loan Syndication — complex multi-party corporate lending — through a strategic product restructure. As one of six founding developers, I pioneered the microservices transition of the FLEXCUBE architecture, building UI components for credit appraisal and loan servicing from the ground up. I also wrote backend business logic in PL/SQL for institutional investor servicing.
+**Senior Associate, Experience Technology** · Jan 2022 – Sep 2023 · Toronto, Canada (client: Loblaw pharmacy platform)
 
-After Oracle, at **i-exceed**, I delivered a Corporate Banking administration platform under tight UAT and deployment pressure, stabilizing the frontend during a strategic team downsizing.
+- Built a Node.js, Express, and TypeScript ingestion service capturing high-volume prescription lifecycle events across the national store network, with endpoints for batched client telemetry.
+- Sanitized PII with hashing and dropping to satisfy PHIPA and PIPEDA, persisting validated events to PostgreSQL for a Google Cloud analytics pipeline feeding KPI dashboards.
+- Built React, Redux, and GraphQL front-end architecture, including responsive Material UI pharmacist interfaces with keyboard-only navigation and ARIA semantics to WCAG 2.1 AA.
 
-Stack: Oracle JET, TypeScript, PL/SQL.
+<p className="text-sm text-[#6B7280] dark:text-[#9CA3AF] mt-3">React · Redux · GraphQL · Node.js · PostgreSQL · Material UI</p>
 
-## On the side
+## i-exceed Technology Solutions
 
-→ [GlassNudge](https://glassnudge.app) — macOS menu bar reminder app.
-→ [FedNews](https://fednews.fyi) — daily newsletter for senior developers.
+**Senior Software Engineer** · Mar 2021 – Sep 2021 · Bangalore, India
+
+- Spearheaded delivery of a Corporate Banking platform hosted on Azure, managing deployments and environment configuration through critical UAT cycles and resolving 100+ defects.
+- Stabilized front-end architecture through patch management and performance tuning, mentoring the team through final delivery.
+
+<p className="text-sm text-[#6B7280] dark:text-[#9CA3AF] mt-3">Azure</p>
+
+## Oracle Financial Services Software
+
+**Applications Developer** · Jun 2019 – Mar 2021 · Bangalore, India
+
+- Led the OBCLPM Loan Syndication team through a strategic product restructure, overseeing architectural design, feature delivery, and dashboard integrations for multi-party corporate lending.
+- Built reusable web components shared between the Bilateral and Syndication loan modules to ensure feature parity.
+- Built a custom Oracle JET component library adopted by 5+ teams, standardizing front-end engineering practices and reducing development overhead.
+
+<p className="text-sm text-[#6B7280] dark:text-[#9CA3AF] mt-3">Oracle JET</p>
+
+<hr className="my-6 border-[#E7E5E4] dark:border-[#2A2A27]" />
+
+**Associate Applications Developer** · Aug 2014 – May 2019 · Bangalore, India
+
+- One of six founding developers on the microservices transition of the FLEXCUBE architecture, building modern UI modules for corporate lending in the OBCLPM pilot suite.
+- Developed backend business logic for FLEXCUBE Investor Servicing (FCIS) in PL/SQL and RAD tools, delivering data processing modules for institutional investor servicing.
+- Engineered end-to-end UI components with Oracle JET across credit appraisal and loan servicing modules.
+
+<p className="text-sm text-[#6B7280] dark:text-[#9CA3AF] mt-3">Oracle JET · PL/SQL</p>
+
+## Projects
+
+<div className="grid gap-6 mt-6">
+  <ProjectCard project={glassNudge} />
+  <ProjectCard project={fedNews} />
+</div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 interface LinkItem {
@@ -116,24 +117,19 @@ export function FooterLinks() {
         ))}
       </div>
       <p className="mt-4 text-xs text-[#6B7280] dark:text-[#9CA3AF]">
-        Site design inspired by{' '}
-        <a
-          href="https://leerob.com"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/uses"
           className="hover:text-[#2563EB] dark:hover:text-[#60A5FA] transition-colors"
         >
-          leerob.com
-        </a>{' '}
-        · Built on{' '}
-        <a
-          href="https://github.com/leerob/next-mdx-blog"
-          target="_blank"
-          rel="noopener noreferrer"
+          uses
+        </Link>{' '}
+        ·{' '}
+        <Link
+          href="/colophon"
           className="hover:text-[#2563EB] dark:hover:text-[#60A5FA] transition-colors"
         >
-          next-mdx-blog
-        </a>
+          colophon
+        </Link>
       </p>
     </footer>
   );
